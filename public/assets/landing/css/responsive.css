@@ -1,0 +1,640 @@
+/*
+==========================================
+   Screen Size 320px
+==========================================
+*/
+@media screen and (max-width: 320px) {
+  .blur-title {
+    display: none;
+  }
+
+  .header {
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #8bc34a;
+  }
+  .header .logo-wrapper {
+    display: flex;
+    justify-content: left;
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .header .navbar-wrapper .nav-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 75px !important;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data {
+    top: 45px;
+    left: -35px;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data::before {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #8bc34a;
+    top: -16px;
+    left: 42px;
+  }
+  .header .left-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+  }
+  .header .left-footer a {
+    font-size: 18px;
+  }
+
+  .home {
+    height: 100%;
+  }
+  .home .hero-text {
+    padding: 65% 0;
+  }
+  .home .hero-text h1 {
+    font-size: 35px;
+  }
+  .home .hero-text .ah-words-wrapper b {
+    font-size: 15px !important;
+  }
+}
+/*
+==========================================
+   Screen Size 320px and 390px
+==========================================
+*/
+@media screen and (min-width: 320px) and (max-width: 390px) {
+  .about .about-counter .counter-tile {
+    padding: 10px;
+  }
+}
+/*
+==========================================
+   Screen Size 320px and 413px
+==========================================
+*/
+@media screen and (min-width: 320px) and (max-width: 413px) {
+  .title h2 {
+    font-size: 18px !important;
+  }
+  .title h5 {
+    margin-top: 30px;
+  }
+  .title p {
+    font-size: 14px !important;
+  }
+
+  .header .navbar-wrapper .nav-list li {
+    display: inline-block;
+    margin-right: 7px;
+  }
+  .header .navbar-wrapper .nav-list li:last-child {
+    margin-right: 0px;
+  }
+
+  .about .counter-tile h4 {
+    font-size: 22px;
+  }
+
+  .portfolio .portfolio-menu button {
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  .testimonial .item .item-img img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .testimonial .item .item-content p {
+    font-size: 13px !important;
+  }
+
+  .blog .blog-post .post-details {
+    bottom: -145px;
+  }
+
+  .contact #map {
+    margin-top: 30px;
+  }
+}
+/*
+==========================================
+   Screen Size 430px
+==========================================
+*/
+@media screen and (max-width: 430px) {
+  .title p br {
+    display: none;
+  }
+}
+/*
+==========================================
+   Screen Size 320px and 337px
+==========================================
+*/
+@media screen and (min-width: 320px) and (max-width: 337px) {
+  .blog .blog-post .post-details {
+    bottom: -170px;
+  }
+}
+/*
+==========================================
+   Screen Size 412px and 514px
+==========================================
+*/
+@media screen and (min-width: 412px) and (max-width: 514px) {
+  .blog .blog-post .post-details {
+    bottom: -110px;
+  }
+}
+/*
+==========================================
+   Screen Size 367px and 514px
+==========================================
+*/
+@media screen and (min-width: 367px) and (max-width: 514px) {
+  .header .navbar-wrapper .nav-list li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+}
+/*
+==========================================
+   Screen Size 515px and 767px
+==========================================
+*/
+@media screen and (min-width: 515px) and (max-width: 767px) {
+  .header .navbar-wrapper .nav-list li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  .blog .blog-post .post-details {
+    bottom: -110px;
+  }
+}
+/*
+==========================================
+   Screen Size 576px and 767px
+==========================================
+*/
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .header .logo, .header .left-footer {
+    width: 55px !important;
+    height: 55px !important;
+  }
+  .header .navbar-wrapper .nav-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 28px !important;
+  }
+  .header .navbar-wrapper .nav-list li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  .header .navbar-wrapper .nav-list li a span {
+    padding: 15px;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data {
+    top: 45px !important;
+    left: -25px !important;
+    font-size: 12px;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data::before {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #8bc34a;
+    top: -17px;
+    left: 42px;
+  }
+
+  .blog .blog-post .post-details {
+    bottom: -200px;
+  }
+}
+/*
+==========================================
+   Screen Size 414px and 600px
+==========================================
+*/
+@media screen and (min-width: 414px) and (max-width: 600px) {
+  .title h5 {
+    margin-top: 30px;
+  }
+  .title h2 {
+    font-size: 25px !important;
+  }
+
+  .about .about-title h2 {
+    font-size: 30px;
+  }
+  .about .about-title h5 {
+    margin-top: 30px;
+  }
+
+  .portfolio .portfolio-menu button {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .testimonial .item .item-img img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .contact #map {
+    margin-top: 30px;
+  }
+}
+/*
+==========================================
+   Screen Size 600px and 667px
+==========================================
+*/
+@media screen and (min-width: 600px) and (max-width: 667px) {
+  .title h5 {
+    margin-top: 30px;
+  }
+  .title h2 {
+    font-size: 30px !important;
+  }
+}
+/*
+==========================================
+   Screen Size 667px and 767px
+==========================================
+*/
+@media screen and (min-width: 667px) and (max-width: 767px) {
+  .title h5 {
+    margin-top: 30px;
+  }
+  .title h2 {
+    font-size: 30px !important;
+  }
+
+  .testimonial .item .item-img img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+/*
+==========================================
+   Screen Size 320px and 767px
+==========================================
+*/
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .blur-title {
+    display: none;
+  }
+
+  p {
+    font-size: 14px !important;
+  }
+
+  .m-mb-30 {
+    margin-bottom: 30px;
+  }
+
+  .m-mb-0 {
+    margin-bottom: 0px !important;
+  }
+
+  .blur-title h2 {
+    font-size: 40px;
+  }
+
+  .header {
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid #8bc34a;
+    border-left: 0px solid #8bc34a;
+  }
+  .header .logo-wrapper {
+    display: flex;
+    justify-content: left;
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .header .navbar-wrapper .nav-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 75px !important;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data {
+    top: 45px;
+    left: -35px;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data::before {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #8bc34a;
+    top: -16px;
+    left: 42px;
+  }
+  .header .left-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+  }
+  .header .left-footer a {
+    font-size: 18px;
+  }
+
+  .about .counter-tile {
+    border-left: 0px solid #8bc34a;
+    border-bottom: 1px solid #8bc34a;
+    padding: 15px 30px;
+    text-align: center;
+  }
+
+  .testimonial .item .item-img img {
+    width: 70px;
+    height: 70px;
+    top: 30px;
+  }
+  .testimonial .item .item-review {
+    margin-top: 0px;
+  }
+
+  .blog .blog-post .thumbail-img img {
+    width: 100% !important;
+  }
+
+  .contact #map {
+    margin-top: 30px;
+  }
+}
+/*
+==========================================
+   Screen Size 320px and 1280px
+==========================================
+*/
+@media screen and (min-width: 320px) and (max-width: 1280px) {
+  .pt-100 {
+    padding-top: 150px;
+  }
+
+  .pb-100 {
+    padding-bottom: 150px;
+  }
+
+  .home {
+    height: 100%;
+  }
+  .home .hero-text {
+    padding: 65% 0;
+  }
+  .home .hero-text h1 {
+    font-size: 35px;
+  }
+  .home .hero-text .ah-words-wrapper b {
+    font-size: 15px !important;
+  }
+}
+/*
+==========================================
+   Screen Size 768px and 1280px
+==========================================
+*/
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .blur-title {
+    display: none;
+  }
+
+  .title h2 {
+    font-size: 25px !important;
+  }
+
+  .m-md {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .m-md-100 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .m-mb-30 {
+    margin-bottom: 30px;
+  }
+
+  .title h2 {
+    font-size: 25px;
+  }
+
+  .header {
+    width: 100%;
+    height: 74px;
+    border-bottom: 1px solid #8bc34a;
+    border-left: 0px solid #8bc34a;
+  }
+  .header .logo-wrapper {
+    display: flex;
+    justify-content: left;
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .header .logo-wrapper .logo {
+    width: 74px;
+    height: 74px;
+  }
+  .header .navbar-wrapper .nav-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 28px !important;
+  }
+  .header .navbar-wrapper .nav-list li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  .header .navbar-wrapper .nav-list li a span {
+    padding: 15px;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data {
+    top: 45px;
+    left: -25px;
+    font-size: 12px;
+  }
+  .header .navbar-wrapper .nav-list li a .tooltip-data::before {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #8bc34a;
+    top: -17px;
+    left: 42px;
+  }
+  .header .left-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 74px;
+    height: 74px;
+  }
+  .header .left-footer a {
+    font-size: 18px;
+  }
+
+  .about-img img {
+    width: 100%;
+  }
+
+  .service .service-block h4 {
+    font-size: 13px;
+  }
+
+  .testimonial .item .item-review {
+    margin-top: 50px;
+  }
+  .testimonial .item .item-img img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .contact #map {
+    margin-top: 30px;
+  }
+}
+/*
+==========================================
+   Screen Size 812px and 1280px and Landscape
+==========================================
+*/
+@media screen and (min-width: 812px) and (max-width: 1280px) and (orientation: landscape) {
+  .m-md {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .m-md-100 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .offset-m-md {
+    margin-left: 25%;
+  }
+
+  .service .service-block h4 {
+    font-size: 16px;
+  }
+  .service .service-block p {
+    font-size: 14px;
+  }
+
+  .blog .blog-post .thumbail-img img {
+    width: 100% !important;
+  }
+}
+/*
+==========================================
+   Screen Size 960px 
+==========================================
+*/
+@media screen and (min-width: 960px) {
+  .blog .thumbail-img img {
+    margin-top: 0 !important;
+  }
+
+  .contact .m-mt-30 {
+    margin-top: 0 !important;
+  }
+  .contact #map {
+    margin-top: 0;
+  }
+}
+/*
+==========================================
+   Screen Size 992px 
+==========================================
+*/
+@media screen and (min-width: 992px) {
+  .title h5 {
+    margin-top: 0;
+  }
+
+  .blog .m-mb-30 {
+    margin-bottom: 0;
+  }
+  .blog .thumbail-img img {
+    margin-top: 0 !important;
+  }
+}
+/*
+==========================================
+   Screen Size 992px and 1199px
+==========================================
+*/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .blog .blog-post .post-details {
+    bottom: -170px;
+  }
+}
+/*
+==========================================
+   Screen Size 1024px 
+==========================================
+*/
+@media screen and (min-width: 1024px) {
+  .blog .m-mb-30 {
+    margin-bottom: 0;
+  }
+  .blog .thumbail-img img {
+    margin-top: 0 !important;
+  }
+
+  .contact .m-mt-30 {
+    margin-top: 0 !important;
+  }
+  .contact #map {
+    margin-top: 0;
+  }
+}
+/*
+==========================================
+   Screen Size 1280px 
+==========================================
+*/
+@media screen and (min-width: 1280px) {
+  .blog .blog-post .post-details {
+    bottom: -145px;
+  }
+}
+/*
+==========================================
+   Screen Size 1281px 
+==========================================
+*/
+@media screen and (min-width: 1281px) {
+  .container {
+    padding-left: 0;
+    padding-right: 81px;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */

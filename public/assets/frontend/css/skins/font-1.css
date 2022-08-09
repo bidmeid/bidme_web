@@ -1,0 +1,50 @@
+/*---------------------------------------------------------------
+01. CSS IMPORT
+---------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+
+
+/*---------------------------------------------------------------
+02. DEFAULT CSS
+---------------------------------------------------------------*/
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    line-height: 26px;
+    color: #313131;
+    font-weight: 400;
+}
+html { 
+    height: 100%;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    font-family: 'Ubuntu', serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.logo-right-text > span {
+    color: #313131;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 15px;
+    font-family: 'Ubuntu', serif;
+}
