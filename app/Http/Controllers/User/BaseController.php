@@ -17,10 +17,11 @@ class BaseController extends Controller
             'Accept' => 'application/json',
             'Authorization' => 'Bearer '.$token,
         ];
- 
+		 
         try {
             $response = $client->request('GET', env('APP_SERVER').'/api/user', ['headers' => $headers]); //request data dari url tersebut ke api/meta@index
         } catch (\GuzzleHttp\Exception\ClientException $e) {
+			 
             abort(404, $e->getResponse()->getStatusCode());
         }
 

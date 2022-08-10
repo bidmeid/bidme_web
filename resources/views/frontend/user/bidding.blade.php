@@ -5,13 +5,8 @@
    @component('components.frontend.breadcrumb')
    @slot('breadcrumb')
    <div class="page__title-wrapper text-center">
-    <h3>{{ __('Bidme | Penawaran') }}</h3>
-     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb justify-content-center">
-           <li class="breadcrumb-item"><a href="/">{{ __('Beranda') }}</a></li>
-           <li class="breadcrumb-item active" aria-current="page">{{ __('Penawaran') }}</li>
-        </ol>
-     </nav>
+    <h3>{{ $data['title'] }}</h3>
+      
    </div>
    @endslot
    @endcomponent
@@ -23,8 +18,7 @@
             <div class="col-xxl-10 offset-xxl-1 col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
                <div class="contact__wrapper white-bg mt--70 p-relative z-index-1 wow fadeInUp" data-wow-delay=".3s">
                   <div class="py-5 text-center">
-                     <img class="d-block mx-auto mb-4 rounded-circle" src="{{ asset('frontend/img/avatar/avatar-5.png') }}" alt="" width="72" height="72">
-                     <h2>Umaedi</h2>
+                      
                      <p class="lead">Anda bisa memilih towing yang tersedia dibawah ini</p>
                    </div>
                   <div class="row">

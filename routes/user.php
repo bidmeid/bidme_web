@@ -7,7 +7,7 @@ Route::middleware('isUser')->group(function () {
         Route::get('/account', 'index');
     });
 
-    Route::get('/bidding', [\App\Http\Controllers\User\BiddingController::class, 'index']);
+    Route::get('user/bidding', [\App\Http\Controllers\User\BiddingController::class, 'index']);
     Route::get('/payment', [\App\Http\Controllers\User\PaymentController::class, 'index']);
 });
 

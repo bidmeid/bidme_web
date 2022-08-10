@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\BaseController as Controller;
 use Illuminate\Http\Request;
 
 class BiddingController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.bidding');
+        $data['title']   = 'Halaman Bidding User';
+		$data = array_merge($this->currentUser(), $data);
+
+		return view('frontend.user.bidding',compact('data'));
     }
 }

@@ -5,13 +5,8 @@
   @component('components.frontend.breadcrumb')
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
-         <h3>{{ __('Bidme | Bidding') }}</h3>
-          <nav aria-label="breadcrumb">
-             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="/">{{ __('Beranda') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ __('Bidding') }}</li>
-             </ol>
-          </nav>
+         <h3>{{ $data['title'] }}</h3>
+          
       </div>
         @endslot
     @endcomponent

@@ -36,7 +36,7 @@
 
                 <!-- input form order-step1 -->
                 <input type="hidden" name="latLongAsal" value="{{ request('latLongAsal') }}">
-                <input type="hidden" name="telp" value="{{ request('telp') }}">
+                <input type="hidden" name="noTelp" value="{{ request('telp') }}">
                 <input type="hidden" name="jenisKendaraan" value="{{ request('jenisKendaraan') }}">
                 <input type="hidden" name="jenisKendaraanId" value="{{ request('jenisKendaraanId') }}">
                 <input type="hidden" name="typeKendaraanId" value="{{ request('jenisKendaraanId') }}">
@@ -45,9 +45,10 @@
                 <input name="latLongTujuan" type="hidden" class="latlong" value="{{ request('latLongTujuan') }}">
 
                 <!-- input form order-step2 -->
-                <input id="ruteId" name="ruteId" type="hidden" value="1">
-                <input name="userToken" type="hidden" value="{{ csrf_token() }}">
-                <input name="customerId" type="hidden" value="1">
+                <input id="ruteId" name="ruteId" type="hidden" value="">
+                <input name="asalPostcode" type="hidden" value="">
+                <input name="tujuanPostcode" type="hidden" value="">
+                <input name="kondisiKendaraanId" type="hidden" value="{{ request('kondisiKendaraanId') }}">
                 <input name="orderDate" type="hidden" value="{{ request('orderDate') }}">
                 <input name="orderTime" type="hidden" value="{{ request('orderTime') }}">
 
@@ -179,6 +180,9 @@ function getHargaDasar(){
        let data = response.responseJSON.data.RequestCost;
        $('#harga-dasar').val(data.totalHarga);
        $('#total-bayar').val(data.totalHarga);
+       $('input[name=ruteId]').val(data.id);
+       $('input[name=asalPostcode]').val(data.asalPostcode);
+       $('input[name=tujuanPostcode]').val(data.tujuanPostcode);
      }else {
       console.log('gagal');
      }
@@ -201,15 +205,12 @@ $('#formOrder').submit((event) => {
 
 function postOrder(){
 
-  let form = $('#formOrder')[0];
-  let data = new FormData(form);
-
+  let data = $('#formOrder').serialize();
+   
  $.ajax({
    url: ServerUrl+'/api/postOrder',
    data: data,
    method: 'POST',
-   processData: false,
-   contentType: false,
    cache: false,
    complete: (response) => {
     if(response.status == 201){
@@ -218,7 +219,7 @@ function postOrder(){
               text : response.responseJSON.message,
               icon :'success'
             }).then(function(){
-              window.location.replace('/user/bidding');
+              window.location.replace("{{url('/')}}/user/bidding");
             });
         }else if(response.status == 404){
             swal({
@@ -227,7 +228,7 @@ function postOrder(){
               icon : 'warning',
             });    
         }else if(response.status == 401){
-        e('info','401 server conection error');
+        alert('info','401 server conection error');
         }else{
             swal({
               title: '',

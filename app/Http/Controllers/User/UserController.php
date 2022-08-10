@@ -13,7 +13,7 @@ class UserController extends Controller
 		 
 		$data['title']   = 'Halaman User Account';
 		$data = array_merge($this->currentUser(), $data);
-		//var_dump();
+		 
         return view('frontend.user.account',compact('data'));
     }
 }

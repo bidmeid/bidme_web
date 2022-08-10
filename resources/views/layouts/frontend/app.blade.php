@@ -4,12 +4,17 @@
 <head>
       @include('layouts.frontend.partials.style')
       <script>
-         function getToken() {
-            return document.cookie.replace(/(?:(?:^|.*;\s*)access_tokenku\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-          } 
+        function getToken() {
+			var name = 'access_tokenku';
+		  let matches = document.cookie.match(new RegExp(
+			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+		  ));
+		  return matches ? decodeURIComponent(matches[1]) : undefined;
+		}
              
          $.ajaxSetup({
            headers: {
+			Accept: 'application/json',
             Authorization: 'Bearer '+getToken(),
            }
          }); 

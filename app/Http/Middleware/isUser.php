@@ -22,6 +22,7 @@ class isUser
         //return $next($request, $token);
         if (isset($_COOKIE['access_tokenku'])) {
             //echo ($_COOKIE['access_tokenku']);
+			 
             return $next($request, $_COOKIE['access_tokenku']);
         } else {
             // dd($_COOKIE['access_tokenku']);
