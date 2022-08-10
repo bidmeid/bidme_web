@@ -117,8 +117,47 @@
           </div>
        </div>
     </div>
+<!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Silahkan login dulu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <div class="sign__header mb-35">
+              <div class=" text-center">
+                <a href="http://127.0.0.1:8000/auth/redirect/google" class="sign__social mb-15">{{ __('Login dengan Google') }}</a>
+             </div>
+              <div class=" text-center">
+                 <a href="https://services.bidme.id/auth/redirect/facebook" class="sign__social mb-15">{{ __('Login dengan Facebook') }}</a>
+              </div>
+           </div>
+          </div>
+        </div>
+        <form id="formLoginPopUp">
+          @csrf
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="email" name="email">
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="password" name="password">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="w-btn w-btn" data-bs-dismiss="modal">{{ __('Batal') }}</button>
+            <button type="submit" class="w-btn w-btn">{{ __('Login') }}</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
  </section>
 @endsection
+
 @push('js')
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8y5ZQcuol7vxOkXii_wsHqYhCNL0uEM&libraries=places"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -141,7 +180,7 @@ function getHargaDasar(){
        $('#harga-dasar').val(data.totalHarga);
        $('#total-bayar').val(data.totalHarga);
      }else {
-       console.log('gagal');
+      console.log('gagal');
      }
    }
  });
@@ -156,7 +195,7 @@ $('#formOrder').submit((event) => {
   if(access_tokenku){
     postOrder()
   }else{
-    console.log('login');
+    $('#staticBackdrop').modal('show');
   }
 });
 
@@ -166,7 +205,7 @@ function postOrder(){
   let data = new FormData(form);
 
  $.ajax({
-   url: 'https://services.bidme.id/api/postOrder',
+   url: ServerUrl+'/api/postOrder',
    data: data,
    method: 'POST',
    processData: false,
@@ -233,5 +272,31 @@ function findRoute() {
    });
 }
 findRoute();
+
+  $("#formLoginPopUp").submit( function (event){
+    event.preventDefault();
+    $('#staticBackdrop').modal('hide');
+
+    const form = $(this)[0];
+    const data = new FormData(form);
+
+    $.ajax({
+        url: ServerUrl+'/api/auth/sigin',
+        data: data,
+        method: 'POST',
+        processData: false,
+        contentType: false,
+        cache: false,
+        complete: (response) => {
+          if(response.status == 200) {
+              // console.log(response.responseJSON.access_token);
+              $token = response.responseJSON.access_token
+              setcookie("access_tokenku", $token);
+            
+          }
+        }
+    });
+  });
+
 </script>
 @endpush
