@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\BaseController as Controller;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        //echo $_COOKIE['access_tokenku'];
-        return view('frontend.user.account');
+        
+		 
+		$data['title']   = 'Halaman User Account';
+		$data = array_merge($this->currentUser(), $data);
+		//var_dump();
+        return view('frontend.user.account',compact('data'));
     }
 }

@@ -23,8 +23,7 @@
             <div class="col-xxl-10 offset-xxl-1 col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
                <div class="contact__wrapper white-bg mt--70 p-relative z-index-1 wow fadeInUp" data-wow-delay=".3s">
                   <div class="py-5 text-center">
-                     <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                     <h2>Umaedi</h2>
+                     <h2>Hallo, <?php echo $data['user']->name; ?></h2>
                      <p class="lead">Anda bisa mengedit akun dan melihat riwayat order disini</p>
                    </div>
                   <div class="row">
@@ -72,7 +71,7 @@
                        <form class="needs-validation" novalidate>          
                          <div class="mb-3">
                            <label for="email">Nama</label>
-                           <input type="email" class="form-control" >
+                           <input type="email" class="form-control" value="<?php echo $data['user']->name; ?>">
                            <div class="invalid-feedback">
                              Please enter a valid email address for shipping updates.
                            </div>
@@ -80,7 +79,7 @@
              
                          <div class="mb-3">
                            <label for="email">Email</label>
-                           <input type="email" class="form-control" >
+                           <input type="email" class="form-control" value="<?php echo $data['user']->email; ?>" disabled>
                            <div class="invalid-feedback">
                              Please enter a valid email address for shipping updates.
                            </div>

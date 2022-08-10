@@ -14,7 +14,7 @@
                    <div class="main-menu main-menu-3 pl-40">
                       <nav id="mobile-menu">
                          <ul>
-                            <li><a href="/">Beranda</a></li>
+                            <li><a href="{{ url('/') }}">Beranda</a></li>
                             <li><a href="{{ route('mitra') }}">Gabung Jadi Mitra</a></li>
                             <li><a href="{{ route('posts') }}">Blog/Posts</a></li>
                             <li><a href="{{ route('contact') }}">Bantuan</a></li>
@@ -24,7 +24,21 @@
                    </div>
                    <div class="header__action ml-40 text-end d-flex align-items-center justify-content-end">
                       <div class="header__right-btn d-none d-md-flex d-xl-block">
+					  <?php if(isset($data['user']->name)){  ?>
+					 
+						<div class="dropdown">
+						  <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Hi, <?php echo $data['user']->name; ?>
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="{{ url('user/account') }}">Profile</a></li>
+							<li><a class="dropdown-item" href="{{ url('user/my_order') }}">Pesanan Saya</a></li>
+							<li><a class="dropdown-item" href="{{ url('auth/signout') }}">Logout</a></li>
+						  </ul>
+						</div>
+					  <?php }else{ ?>
                          <a href="{{ route('login') }}" class="w-btn w-btn-purple w-btn-7">Masuk App</a>
+					  <?php } ?>
                       </div>
                    </div>
                 </div>

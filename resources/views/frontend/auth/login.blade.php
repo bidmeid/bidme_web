@@ -15,11 +15,9 @@
              <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
                 <div class="sign__wrapper white-bg">
                   <div class="sign__header mb-35">
+                     
                      <div class="sign__in text-center">
-                        <a href="https://services.bidme.id/auth/redirect/facebook" class="sign__social text-start mb-15"><i class="fab fa-facebook-f"></i>Daftar dengan Facebook</a>
-                     </div>
-                     <div class="sign__in text-center">
-                        <a href="http://127.0.0.1:8000/auth/redirect/google" class="sign__social text-start mb-15"><i class="fab fa-google"></i>Daftar dengan Google</a>
+                        <a id="sign_social_google" href="javascript:void(0);" class="sign__social text-start mb-15"><i class="fab fa-google"></i>Daftar dengan Google</a>
                         <p> <span>........</span> {{ __('Atau, daftar dengan email') }}<span> ........</span> </p>
                      </div>
                   </div>
@@ -85,6 +83,13 @@
              }
           });
        });
+	   
+	   $("#sign_social_google").click( function () {
+		window.location.href = ServerUrl+'/auth/redirect/google';
+		});
+	  
   });
+  
+   
 </script>
 @endpush
