@@ -69,7 +69,7 @@
           const data = new FormData(form);
 
           $.ajax({
-             url: ServerUrl+'/api/auth/sigin',
+             url: BaseUrl+'/api/auth/sigin',
              data: data,
              method: 'POST',
              processData: false,
