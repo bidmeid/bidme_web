@@ -10,8 +10,8 @@ class BiddingController extends Controller
     public function index()
     {
         $data['title']   = 'Halaman Bidding User';
-		$data = array_merge($this->currentUser(), $data);
+        $data = array_merge($this->currentUser(), $data);
 
-		return view('frontend.user.bidding',compact('data'));
+        return view('backend.user.account', compact('data'));
     }
 }

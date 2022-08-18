@@ -208,7 +208,7 @@ function postOrder(){
   let data = $('#formOrder').serialize();
    
  $.ajax({
-   url: ServerUrl+'/api/postOrder',
+   url: 'https://services.bidme.id/api/postOrder',
    data: data,
    method: 'POST',
    cache: false,

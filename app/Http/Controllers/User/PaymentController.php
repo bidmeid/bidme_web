@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\BaseController  as Controller;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -39,6 +39,10 @@ class PaymentController extends Controller
             ),
         );
         $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('frontend.pages.payment', ['snapToken'  => $snapToken]);
+        $data = array_merge($this->currentUser());
+        return view('backend.user.payment', [
+            'snapToken' => $snapToken,
+            'data'      => $data,
+        ]);
     }
 }
