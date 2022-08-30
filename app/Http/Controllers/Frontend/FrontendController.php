@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\BaseController as Controller;
 
 class FrontendController extends Controller
 {
@@ -38,17 +38,32 @@ class FrontendController extends Controller
 
     public function orderStep1()
     {
-        return view('frontend.order.step1');
+        $data['title']   = 'Rincian Pesanan';
+		if(isset($_COOKIE['access_tokenku'])){
+        $data = array_merge($this->currentUser(), $data);
+		}
+		
+		return view('frontend.order.step1', compact('data'));
     }
 
     public function orderStep2()
     {
-        return view('frontend.order.step2');
+        $data['title']   = 'Rincian Pesanan';
+		if(isset($_COOKIE['access_tokenku'])){
+        $data = array_merge($this->currentUser(), $data);
+		}
+		
+		return view('frontend.order.step2', compact('data'));
     }
 
     public function orderStep3()
     {
-        return view('frontend.order.step3');
+        $data['title']   = 'Rincian Pesanan';
+		if(isset($_COOKIE['access_tokenku'])){
+        $data = array_merge($this->currentUser(), $data);
+		}
+
+		return view('frontend.order.step3', compact('data'));
     }
 
 

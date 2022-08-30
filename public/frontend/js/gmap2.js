@@ -87,7 +87,7 @@ function initialize() {
                         ].long_name;
                 }
                 addressEl.value = address;
-				
+				map.setZoom(15);
                 // latEl.value = lat;
                 // longEl.value = long;
                 latLong.value = lat + ',' + long;
@@ -106,10 +106,11 @@ function initialize() {
              * Creates the info Window at the top of the marker
              */
             infoWindow = new google.maps.InfoWindow({
-                content: address
+                content: 'Geser sesuai titik anda berada'
             });
 
-            infoWindow.open(map, marker);
+            setTimeout(() => {infoWindow.open(map, marker);}, 1000);
+			setTimeout(() => {infoWindow.close();}, 4000);
         });
     });
 
@@ -160,66 +161,5 @@ function initialize() {
         });
     });
 
-	if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
 
-          map.setCenter(pos);
-		  marker.setPosition(pos);
-		  map.setZoom(15);
-		   
-		  //in
-		lat = position.coords.latitude;
-        long = position.coords.longitude;
-
-        let geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ latLng: marker.getPosition() }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {  // This line can also be written like if ( status == google.maps.GeocoderStatus.OK ) {
-                if (results[0]) {
-                    var address = results[0].formatted_address;
-                    var pin =
-                        results[0].address_components[
-                            results[0].address_components.length - 1
-                        ].long_name;
-                }
-                addressEl.value = address;
-                // latEl.value = lat;
-                // longEl.value = long;
-                latLong.value = lat + ',' + long;
-                posCode.value = pin
-
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
-            }
-
-            // Closes the previous info window if it already exists
-            if (infoWindow) {
-                infoWindow.close();
-            }
-
-            /**
-             * Creates the info Window at the top of the marker
-             */
-            infoWindow = new google.maps.InfoWindow({
-                content: 'Geser sesuai titik anda berada'
-            });
-
-            setTimeout(() => {infoWindow.open(map, marker);}, 1000);
-			setTimeout(() => {infoWindow.close();}, 4000);
-             
-        });
-		  //out
-        },
-        () => {
-          
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
 }

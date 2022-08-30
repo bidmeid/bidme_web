@@ -2,7 +2,7 @@
 <html class="no-js" lang="zxx">
    
 <head>
-      @include('layouts.frontend.partials.style')
+      @include('layouts.frontend.partials.style2')
       <script>
         function getToken() {
 			var name = 'access_tokenku';
@@ -35,11 +35,7 @@
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
          </svg>
       </div>
-	  <?php if(isset($_COOKIE['access_tokenku'])){  ?>
-	  @include('layouts.frontend.partials.headerUser')
-	  <?php }else{ ?>
       @include('layouts.frontend.partials.header')
-	  <?php } ?>
       @include('layouts.frontend.partials.sidebar')
       <div class="body-overlay"></div>
          @yield('content')

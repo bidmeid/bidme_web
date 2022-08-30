@@ -7,6 +7,13 @@ Route::middleware('isUser')->group(function () {
         Route::get('/account', 'index');
         Route::get('/bidding', [\App\Http\Controllers\User\BiddingController::class, 'index']);
         Route::get('/payment', [\App\Http\Controllers\User\PaymentController::class, 'index']);
+        Route::get('/checkout', [\App\Http\Controllers\User\CheckoutController::class, 'index']);
+		
+        Route::get('/profile', [\App\Http\Controllers\User\UserController::class, 'index']);
+		Route::get('/bantuan', [\App\Http\Controllers\User\UserController::class, 'bantuan']);
+		
+        Route::get('/layanan', [\App\Http\Controllers\User\LayananController::class, 'index']);
+        Route::get('/my_order', [\App\Http\Controllers\User\LayananController::class, 'myOrder']);
     });
 });
 

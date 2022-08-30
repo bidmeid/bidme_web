@@ -14,11 +14,11 @@
                    <div class="main-menu main-menu-3 pl-40">
                       <nav id="mobile-menu">
                          <ul>
-                            <li><a href="{{ url('/') }}">Beranda</a></li>
-                            <li><a href="{{ route('mitra') }}">Gabung Jadi Mitra</a></li>
-                            <li><a href="{{ route('posts') }}">Blog/Posts</a></li>
-                            <li><a href="{{ route('contact') }}">Bantuan</a></li>
-                            <li><a href="{{ route('order') }}">Order</a></li>
+                            <li><a href="{{ url('user/account') }}">Informasi Akun</a></li>
+                            <li><a href="{{ url('user/layanan') }}">Layanan Berlangsung</a></li>
+							<li><a href="{{ route('order') }}">Order</a></li>
+                            <li><a href="{{ url('user/bantuan') }}">Bantuan</a></li>
+                            
                          </ul>
                       </nav>
                    </div>
@@ -32,7 +32,7 @@
 						  </button>
 						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							<li><a class="dropdown-item" href="{{ url('user/account') }}">Profile</a></li>
-							<li><a class="dropdown-item" href="{{ url('user/my_order') }}">Pesanan Saya</a></li>
+							<li><a class="dropdown-item" href="{{ url('user/my_order') }}">Riwayat Pesanan</a></li>
 							<li><a class="dropdown-item" href="{{ url('auth/signout') }}">Logout</a></li>
 						  </ul>
 						</div>

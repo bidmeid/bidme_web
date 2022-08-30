@@ -9849,4 +9849,61 @@ p {
   }
 }
 
+/*----------------------------------------*/
+/*  24. SHOPPING
+/*----------------------------------------*/
+.order-notes textarea {
+  border: 1px solid #eaedff;
+  height: 90px;
+  padding: 15px;
+  width: 100%;
+}
+
+.order-notes textarea::-moz-placeholder {
+  color: #6f7172;
+  opacity: 1;
+}
+
+.order-notes textarea::placeholder {
+  color: #6f7172;
+  opacity: 1;
+}
+
+.checkout-form-list {
+  margin-bottom: 30px;
+}
+
+.checkout-form-list label {
+  color: #6f7172;
+}
+
+.checkout-form-list input[type=text], .checkout-form-list input[type=text], .checkout-form-list input[type=number] {
+  background: #ffffff;
+  border: 1px solid #eaedff;
+  border-radius: 0;
+  height: 45px;
+  padding: 0 0 0 10px;
+  width: 50%;
+}
+
+.checkout-form-list input[type=text]::-moz-placeholder,
+.checkout-form-list input[type=password]::-moz-placeholder,
+.checkout-form-list input[type=email]::-moz-placeholder {
+  color: #6f7172;
+  opacity: 1;
+}
+
+.checkout-form-list input[type=text]::placeholder,
+.checkout-form-list input[type=password]::placeholder,
+.checkout-form-list input[type=email]::placeholder {
+  color: #6f7172;
+  opacity: 1;
+}
+
+.checkout-form-list input[type=checkbox] {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  top: 1px;
+}
 /*# sourceMappingURL=style.css.map */

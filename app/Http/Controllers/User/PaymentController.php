@@ -40,7 +40,7 @@ class PaymentController extends Controller
         );
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         $data = array_merge($this->currentUser());
-        return view('backend.user.payment', [
+        return view('frontend.user.payment', [
             'snapToken' => $snapToken,
             'data'      => $data,
         ]);

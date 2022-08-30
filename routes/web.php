@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('pushSession', [\App\Http\Controllers\FrontEnd\SessPush::class, 'index']);
 Route::post('payments/midtrans-notification', [MidtransController::class, 'receive']);
 Route::post('payments/midtrans-success', [MidtransController::class, 'success']);
 
@@ -19,7 +20,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 });
 
-Route::get('/logout', function () {
+Route::get('/auth/signout', function () {
     setcookie("access_tokenku", null);
     return redirect(url('/root'));
 });

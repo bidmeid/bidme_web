@@ -1,26 +1,13 @@
 @extends('layouts.frontend.app')
 @section('content')
 
-  @component('components.frontend.breadcrumb')
-  @slot('breadcrumb')
-  <div class="page__title-wrapper text-center">
-  <h3>{{ __('Bidme | Order') }}</h3>
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb justify-content-center">
-          <li class="breadcrumb-item"><a href="/">{{ __('Beranda') }}</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ __('Order') }}</li>
-      </ol>
-    </nav>
-  </div>
-  @endslot
-  @endcomponent
 
 <section class="services__area pt-110 pb-45">
     <div class="container">
        <div class="row">
           <div class="col-xxl-12 offset-xl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
              <div class="section__title-wrapper section__title-wrapper-4 text-center mb-65 wow fadeInUp" data-wow-delay=".3s">
-                <h2 class="section__title section__title-4 section__title-4-p-2">{{ __('Rincian Order') }}</h2>
+                <h2 class="section__title section__title-4 section__title-4-p-2">{{ __('Rincian Pesanan') }}</h2>
              </div>
           </div>
        </div>
@@ -36,18 +23,23 @@
 
                 <!-- input form order-step1 -->
                 <input type="hidden" name="latLongAsal" value="{{ request('latLongAsal') }}">
-                <input type="hidden" name="noTelp" value="{{ request('telp') }}">
-                <input type="hidden" name="jenisKendaraan" value="{{ request('jenisKendaraan') }}">
+                <input type="hidden" name="noTelp" value="{{ request('noTelp') }}">
                 <input type="hidden" name="jenisKendaraanId" value="{{ request('jenisKendaraanId') }}">
-                <input type="hidden" name="typeKendaraanId" value="{{ request('jenisKendaraanId') }}">
+                <input type="hidden" name="merekKendaraanId" value="{{ request('merekKendaraanId') }}">
+                <input type="hidden" name="typeKendaraanId" value="{{ request('typeKendaraanId') }}">
 
                 <!-- input form order-step2 -->
                 <input name="latLongTujuan" type="hidden" class="latlong" value="{{ request('latLongTujuan') }}">
-
+					 
                 <!-- input form order-step2 -->
+				<input name="orderType" type="hidden" value="{{ request('orderType') }}">
                 <input id="ruteId" name="ruteId" type="hidden" value="">
-                <input name="asalPostcode" type="hidden" value="">
-                <input name="tujuanPostcode" type="hidden" value="">
+                <input name="jarak" type="hidden" value="">
+                <input name="orderCost" type="hidden" value="">
+                <input name="alamatAsal" type="hidden" value="{{ request('alamatAsal') }}">
+                <input name="alamatTujuan" type="hidden" value="{{ request('alamatTujuan') }}">
+                <input name="asalPostcode" type="hidden" value="{{ request('asalPostcode') }}">
+                <input name="tujuanPostcode" type="hidden" value="{{ request('tujuanPostcode') }}">
                 <input name="kondisiKendaraanId" type="hidden" value="{{ request('kondisiKendaraanId') }}">
                 <input name="orderDate" type="hidden" value="{{ request('orderDate') }}">
                 <input name="orderTime" type="hidden" value="{{ request('orderTime') }}">
@@ -55,54 +47,41 @@
                     <div class="form-group row">
                         <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Lokasi Jemput') }}</label>
                         <div class="col-sm-9">
-                          <input name="alamatAsal" type="text" class="form-control" id="alamatAsal" value="{{ request('alamatAsal') }}" readonly>
+						  <label for="alamatAsal" class=" col-form-label">: {{ request('alamatAsal') }}</label>
+                         
                         </div>
                     </div>
                     <div class="form-group row mt-3">
                         <label for="alamatTujuan" class="col-sm-3 col-form-label">{{ __('Lokasi Antar') }}</label>
                         <div class="col-sm-9">
-                          <input name="alamatTujuan" type="text" class="form-control" id="alamatTujuan" value="{{ request('alamatTujuan') }}" readonly>
-                        </div>
+                          <label for="alamatTujuan" class=" col-form-label">: {{ request('alamatTujuan') }}</label>
+						</div>
                     </div>
                     <div class="form-group row mt-3">
                       <label for="jarak" class="col-sm-3 col-form-label">{{ __('Perkiraan Jarak') }}</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="jarak" value="" readonly>
+						: <label id="jarak" for="jarak" class="col-sm-3 col-form-label"></label>
                       </div>
                     </div>
                     <div class="form-group row mt-3">
                       <label for="Tipe Order" class="col-sm-3 col-form-label">{{ __('Tipe Order') }}</label>
                       <div class="col-sm-9">
-                        <input name="orderType" type="text" class="form-control" id="jadwal" value="{{ request('typeOrder') }}" readonly>
+                        : <label for="type_order" class="col-sm-3 col-form-label">{{ request('orderType') }}</label>
                       </div>
                     </div>
                     <div class="form-group row mt-3">
                       <label for="harga-dasar" class="col-sm-3 col-form-label">{{ __('Harga Dasar') }}</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="harga-dasar" value="" readonly>
+                        : <label id="harga_dasar" for="total_bayar" class="col-sm-3 col-form-label"></label>
                       </div>
                     </div>
                     <hr>
-                    <div class="form-group row mt-2">
-                        <label for="layanan" class="col-sm-6 col-form-label">{{ __('Layanan Tambahan') }}</label>
-                    </div>
-                    <div class="form-group row mt-3">
-                        <label for="bantuan" class="col-sm-3 col-form-label">{{ __('Bantuan Orang') }}</label>
+                     
+                    <div class="form-group row mt-3 fw-bolder">
+                        <label for="total-bayar" class="col-sm-3 col-form-label">{{ __('Total Biaya') }}</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" id="bantuan" value="0">
-                        </div>
-                    </div>
-                    <div class="form-group row mt-3">
-                        <label for="asuransi" class="col-sm-3 col-form-label">{{ __('Biaya Asuransi') }}</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="asuransi" value="0">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group row mt-3">
-                        <label for="total-bayar" class="col-sm-3 col-form-label">{{ __('Total Bayar') }}</label>
-                        <div class="col-sm-9">
-                          <input name="orderCost" type="number" class="form-control" id="total-bayar" value="" readonly>
+						  : <label id="total_bayar" for="total_bayar" class="col-sm-3 col-form-label"></label>
+                           
                         </div>
                     </div>
                     <div class="form-group row mt-3">
@@ -131,16 +110,15 @@
           <div class="col-md-12">
             <div class="sign__header mb-35">
               <div class=" text-center">
-                <a href="http://127.0.0.1:8000/auth/redirect/google" class="sign__social mb-15">{{ __('Login dengan Google') }}</a>
+                <a  href="javascript:void(0) "onClick="login()" class="sign__social bg-primary btn-primary  mb-15">{{ __('Login dengan Google') }}</a>
              </div>
-              <div class=" text-center">
-                 <a href="https://services.bidme.id/auth/redirect/facebook" class="sign__social mb-15">{{ __('Login dengan Facebook') }}</a>
-              </div>
+			<hr>
            </div>
           </div>
         </div>
         <form id="formLoginPopUp">
           @csrf
+          <div class="mb-3 text-center"><p class="small">Silahkan login dengan Email dan Password Anda</p></div>
           <div class="mb-3">
             <input type="email" class="form-control" placeholder="email" name="email">
           </div>
@@ -163,33 +141,47 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8y5ZQcuol7vxOkXii_wsHqYhCNL0uEM&libraries=places"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-function getHargaDasar(){
-  let data = {
-    'orderType' : '{{ request('typeOrder') }}', 
+ 
+let data = {
+    'orderType' : '{{ request('orderType') }}', 
     'asalPostcode' : '{{ request('asalPostcode') }}', 
     'tujuanPostcode' : '{{ request('tujuanPostcode') }}', 
     'jenisKendaraanId' : '{{ request('jenisKendaraanId') }}', 
   };
-
+  
+function getHargaDasar(){
+ 
  $.ajax({
-   url: 'https://services.bidme.id/api/requestCost',
+   url:  ServerUrl+'/api/requestCost',
    method: 'POST',
    data: data,
    complete: (response) => {
      if(response.status == 200) {
        let data = response.responseJSON.data.RequestCost;
-       $('#harga-dasar').val(data.totalHarga);
-       $('#total-bayar').val(data.totalHarga);
+       $('#harga_dasar').html('Rp. '+data.totalHarga);
+        
+       $('#total_bayar').html('Rp. '+data.totalHarga);
        $('input[name=ruteId]').val(data.id);
-       $('input[name=asalPostcode]').val(data.asalPostcode);
-       $('input[name=tujuanPostcode]').val(data.tujuanPostcode);
-     }else {
-      console.log('gagal');
+       $('input[name=orderCost]').val(data.totalHarga);
      }
    }
  });
 }
 getHargaDasar();
+
+function login(){
+	
+$.ajax({
+   url:  "{{ url('/pushSession') }}",
+   method: 'GET',
+   data: $('#formOrder').serialize(),
+   complete: (response) => {
+     if(response.status == 201) {
+        window.location.replace(ServerUrl+"/auth/redirects/google/customer");
+     }
+   }
+ }); 
+}
 
 $('#formOrder').submit((event) => {
  event.preventDefault();
@@ -208,18 +200,19 @@ function postOrder(){
   let data = $('#formOrder').serialize();
    
  $.ajax({
-   url: 'https://services.bidme.id/api/postOrder',
+   url:  ServerUrl+'/api/postOrder',
    data: data,
    method: 'POST',
    cache: false,
    complete: (response) => {
     if(response.status == 201){
+		console.log(response.responseJSON.data.id);
             swal({
               title: '',
               text : response.responseJSON.message,
               icon :'success'
             }).then(function(){
-              window.location.replace("{{url('/')}}/user/bidding");
+              window.location.replace("{{url('/')}}/user/bidding?orderId="+response.responseJSON.data.id);
             });
         }else if(response.status == 404){
             swal({
@@ -266,7 +259,9 @@ function findRoute() {
    directionsService.route(request, function (result, status) {
        if (status == 'OK') {
            directionsDisplay.setDirections(result);
-           document.getElementById('jarak').value = result.routes[0].legs[0].distance.text;
+           //document.getElementById('jarak').value = result.routes[0].legs[0].distance.text;
+		   $('#jarak').html(result.routes[0].legs[0].distance.text);
+		   $('input[name=jarak]').val(result.routes[0].legs[0].distance.text);
        } else {
            return alert('Petunjuk arah gagal dimuat, masukkan alamat yang benar!');
        }
@@ -282,7 +277,7 @@ findRoute();
     const data = new FormData(form);
 
     $.ajax({
-        url: ServerUrl+'/api/auth/sigin',
+        url: ServerUrl+'/api/auth/customer/sigin',
         data: data,
         method: 'POST',
         processData: false,
@@ -293,7 +288,7 @@ findRoute();
               // console.log(response.responseJSON.access_token);
               $token = response.responseJSON.access_token
               setcookie("access_tokenku", $token);
-            
+			  location.reload();
           }
         }
     });

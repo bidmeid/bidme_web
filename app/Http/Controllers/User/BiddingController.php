@@ -12,6 +12,6 @@ class BiddingController extends Controller
         $data['title']   = 'Halaman Bidding User';
         $data = array_merge($this->currentUser(), $data);
 
-        return view('backend.user.account', compact('data'));
+        return view('frontend.user.bidding', compact('data'));
     }
 }
