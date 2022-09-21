@@ -8,7 +8,7 @@
         <div class="container">
            <div class="row justify-content-center">
               <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10">
-                 <div class="section__title-wrapper section__title-wrapper-4 text-center mb-65 wow fadeInUp" data-wow-delay=".3s">
+                 <div class="section__title-wrapper section__title-wrapper-4 text-center mb-10 wow fadeInUp" data-wow-delay=".3s">
                     <h2 class="section__title section__title-4 section__title-4-p-2">{{ __('Order Mobil Derek Indonesia') }}</h2>
                     <p>{{ __('Beritahu kami lokasi dan tujuan Anda') }}</p>
                  </div>
@@ -23,18 +23,18 @@
                      <input name="asalPostcode" type="hidden" class="pos-code">
                      <div class="services__content-4 mt-2">
                            <div class="row mt-3">
-                              <div class="col-md-3">
+                              <div class="col-md-3 fw-bold mb-10">
                                  <input type="radio" class="btn-check live-order" name="orderType" value="Live Order" id="warning-outlined" autocomplete="off" checked>
                                  <label class="btn btn-outline-warning d-flex" for="warning-outlined">{{ __('Order Towing Sekarang') }}</label>
                               </div>
-                              <div class="col-md-4">
-                                 <input type="radio" class="btn-check scheduled" name="orderType" id="success-outlined" autocomplete="off">
+                              <div class="col-md-4 fw-bold mb-10">
+                                 <input type="radio" class="btn-check scheduled" name="orderType" value="Scheduled" id="success-outlined" autocomplete="off">
                                  <label class="btn btn-outline-success d-flex" for="success-outlined">{{ __('Jadwalkan Order Towing') }}</label>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-3 Terjadwal mb-10" style="display: none">
                                  <input type="date" class="form-control" name="orderDate" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date('Y-m-d'); ?>" required>
                               </div>
-                              <div class="col-md-2">
+                              <div class="col-md-2 Terjadwal mb-10" style="display: none">
                                  <input type="time" class="form-control" name="orderTime" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date('H:i:s'); ?>" required>
                               </div>
                              </div>
@@ -106,6 +106,17 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8y5ZQcuol7vxOkXii_wsHqYhCNL0uEM&libraries=places&callback=initialize"></script>
 <script src="{{ asset('frontend/js/gmap.js') }}"></script>
 <script>
+	$('input[name=orderType]').change(function () {
+		console.log($(this).val());
+		if($(this).val() == 'Scheduled'){
+		$('.Terjadwal').show();
+		$('input[name=orderDate]').focus();
+		
+		}else{
+		$('.Terjadwal').hide();	
+		}
+	});
+	
       function getJenisKendaraan(){
          $.ajax({
             url: ServerUrl+'/api/app/jenisKendaraan',

@@ -3,13 +3,49 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\User\BaseController  as Controller;
+use Validator;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function index()
+    public function index(request $request)
     {
-        // Set your Merchant Server Key
+		$validator = Validator::make($request->all(), [
+			'orderId' => 'required',
+			'paymentMethod'  => 'required',
+			'kupon'  => 'required',
+			 
+			
+        ]);
+		
+		if($validator->fails()){
+            redirect(url('user/layanan'));       
+        }
+		$client = new \GuzzleHttp\Client();
+        $token = $_COOKIE['access_tokenku'];
+        $headers = [ 
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer '.$token,
+        ];
+		 
+        try {
+            $response = $client->request('POST', env('APP_SERVER').'/api/invoice', 
+					['headers' => $headers, 
+					 'form_params' => [
+                        "orderId" => $request->orderId,
+                        "paymentMethod" => $request->paymentMethod,
+                        "kupon" => $request->kupon,
+                   ]]); //request data dari url tersebut ke api/meta@index
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+			 
+            dd($e->getResponse());
+        }
+
+        $response = $response->getBody()->getContents(); //mengambil value dari $response yang berupa JSON
+		$response = json_decode($response); //merubah $response menjadi array
+        
+		
+		// Set your Merchant Server Key
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
@@ -17,29 +53,42 @@ class PaymentController extends Controller
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
-
+ 
         $params = array(
             'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 0,
+                'order_id' => $response->data->invoice->noInvoice,
+                'gross_amount' => $response->data->invoice->billing,
+                'date' => $response->data->invoice->created_at,
             ),
             "item_details" =>  array(
                 [
-                    "id" => "a01",
-                    "price" => 50000,
+                    "id" => $response->data->invoice->orderId,
+                    "price" => $response->data->invoice->billing,
                     "quantity" => 1,
-                    "name" => "Towing 1"
+                    "name" => $response->data->invoice->noInvoice
                 ]
             ),
             'customer_details'  => array(
-                'first_name'    =>  'umaedi',
+                'first_name'    =>  $response->data->user->name,
                 'last_name'     =>  '',
-                'email'         => 'admin@gmail.com',
-                'phone'         => '085741492045',
+                'email'         => $response->data->user->email,
+                'phone'         => $response->data->user->no_telp,
             ),
         );
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        $data = array_merge($this->currentUser());
+        
+		 
+		 try {
+
+                $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            } catch (Exception $e) {
+
+                throw new Exception("API Request Error unable to json_decode API response");
+
+            }
+        $data = array_merge($this->currentUser(), $params);
+		
+		 
         return view('frontend.user.payment', [
             'snapToken' => $snapToken,
             'data'      => $data,

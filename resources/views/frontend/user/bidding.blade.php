@@ -77,7 +77,7 @@
 							 e('info','401 server conection error');
 						}else if(response.status == 202){
 							 $('#loadmore').remove();
-							 $('#item-list').append('<center class="m-t-50"><h2>kami sedang mencoba mencarikan unit towing terdekat untuk anda</h2></center>');
+							 $('#item-list').html('<center class="m-t-50"><h2>kami sedang mencoba mencarikan unit towing terdekat untuk anda</h2></center>');
 						}
                     },
 					dataType:'json'

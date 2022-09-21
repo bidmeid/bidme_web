@@ -1,5 +1,25 @@
 @extends('layouts.frontend.app')
 @section('content')
+<style>
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + label {
+  cursor: pointer;
+  background-image: linear-gradient(90deg, #747373 0%, #c0c0c1 53%, #dfdedd 100%);
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + label {
+  outline: 4px solid #f00;
+  background-image: linear-gradient(90deg, #e69303 0%, #f3b704 53%, #ffda04 100%);
+}
+</style>
 <main>
 
 
@@ -14,8 +34,7 @@
 				  <?php }else{ ?>
 					 <img class="d-block mx-auto mb-4 rounded-circle" src="{{ asset('frontend/img/avatar/avatar-5.png') }}" alt="" width="72" height="72">
 				  <?php } ?>-->
-					 <h2><?php echo $data['user']->name; ?></h2>
-                     <p class="lead">Berikut rincian pesanan anda</p>
+					  
                    </div>
                    <div class="section-body">
                     <div class="invoice">
@@ -53,10 +72,11 @@
                           </div>
                         </div>
                       </div>
+					  <form id="payment" method="get" action="{{ url('user/payment') }}" >
                       <div class="row">
 					  <div class="col-lg-7 pt-50">
 							
-							<div class="checkout-form-list create-acc">
+							<!--<div class="checkout-form-list create-acc">
 								<input name="cbox" id="cbox" type="checkbox">
 								<label for="cbox" class="fw-bold text-primary">Tambahkan Asuransi Kendaraan</label>
 							</div>
@@ -64,7 +84,7 @@
 								
 								<label>Masukan Harga Kendaraan Anda <span class="required">*</span></label>
 								<input name="hargaKendaraan" type="number" placeholder="">
-							</div>
+							</div>-->
 							<div class="checkout-form-list create-acc">
 								<input name="kupon" id="kupon" type="checkbox">
 								<label for="kupon" class="fw-bold text-primary">Punya Kode Kupon ?</label>
@@ -106,25 +126,46 @@
 							</div>
 					  </div>
 					  </div>
-					  <div class="row">
-					  <div class="col-lg-12 pt-20">
-					  <h5>Pilih metode pembayaran anda :</h5><br>
 					  
-                       
-                        <div class="col-4 mb-lg-0">
-						<div class="support__item gradient-yellow mb-30 transition-3 text-center">
+					  <div class="row">
+					  
+					  <input type="hidden" name="orderId">
+					  <div class="col-lg-12 pt-20"><hr>
+						<h5>Pilih metode pembayaran yang tersedia :</h5><br>
+					  </div>
+                        <div class="col-lg-4 mb-lg-0">
+						<h5 class=" " for="warning-outlined">Pembayaran Transfer</h5>
+						<input type="radio" class="btn-check live-order" name="paymentMethod" value="midtrans" id="midtrans" autocomplete="off"  checked>
+						<label for="midtrans" class="card pt-15 pb-20 gradient-yellow mb-30 transition-3 text-center">
 						   <div class="support__icon d-flex align-items-end justify-content-center">
-							  <a href="javascript:void(0);" id="midtrans">
-								 <img width="200px" src="https://d2599kud7uucku.cloudfront.net/themes/h2/invoice/images/gateways/dlocal_apm.vs.png?v=10.3.11" alt="Pembayaran Melalui Bank Transfer">
-							  </a>
+						   
+							<img width="200px" src="https://d2599kud7uucku.cloudfront.net/themes/h2/invoice/images/gateways/dlocal_apm.vs.png?v=10.3.11" alt="Pembayaran Melalui Bank Transfer">
+							  
 						   </div>
-						    
-						</div>
-						
+						</label>
                         </div>
+						
+						<!--<div class="col-lg-4 mb-lg-0">
+						<h5 class=" " for="warning-outlined">Bayar Di Tempat</h5>
+						<input type="radio" class="btn-check live-order" name="paymentMethod" value="transfer" id="transfer" autocomplete="off" required>
+						<label for="transfer" class="card pt-15 pb-15 gradient-yellow mb-30 transition-3 text-center">
+						   <div class="support__icon d-flex align-items-end justify-content-center">
+						   
+							<img width="200px" src="{{ asset('frontend/img/payment2.png') }}" alt="Pembayaran Melalui Bank Transfer">
+							  
+						   </div>  
+						</label>
+                        </div>-->
                       
+					  
+					  </div>
+					  
+					  <div class="form-group row mt-3 text-right">
+					  <div class="col-sm-12" id="btnex">
+					  <button type="submit" id="btn-order" class="w-btn w-btn-purple mt-3">BAYAR SEKARANG</button>
 					  </div>
 					  </div>
+					   </form>
                     </div>
                   </div>
                </div>
@@ -145,7 +186,7 @@
 	var bidId = getUrlVars().bidId;
 	
 	function loadView(){
-		
+		$("input[name=orderId]").val(orderId);
 		$.ajax({
 					data: getUrlVars(),
 					url: ServerUrl+"/api/checkOut",
@@ -169,7 +210,7 @@
 
 							$('#items').html(tbody);
 						}else if(response.status == 202){
-							
+							document.location.replace("{{ url('user/layanan') }}"); 
 						}
 					},
 				dataType:'json'
@@ -204,8 +245,14 @@
 	});
 
 	$("#midtrans").click( function () {
-		window.location.href = "{{ url('user/payment') }}";
-		});
+		$('#transfer').removeAttr('value');
+         $(this).attr('value', 'midtrans');
+	});
+	
+	$("#transfer").click( function () {
+		$('#midtrans').removeAttr('value');
+         $(this).attr('value', 'transfer');
+	});
 
 </script>
 

@@ -22,9 +22,13 @@
             <div class="col-xxl-10 offset-xxl-1 col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
                <div class="contact__wrapper white-bg mt--70 p-relative z-index-1 wow fadeInUp" data-wow-delay=".3s">
                   <div class="py-5 text-center">
-                     <img class="d-block mx-auto mb-4 rounded-circle" src="{{ asset('frontend/img/avatar/avatar-5.png') }}" alt="" width="72" height="72">
-                     <h2>Umaedi KH</h2>
-                     <p class="lead">Berikut rincian order dan pembyaran Anda</p>
+                     <!--  <?php if($data['user']->avatar){ ?>
+                     <img class="d-block mx-auto mb-4 rounded-circle" src="<?php echo $data['user']->avatar; ?>" alt="" width="72" height="72">
+				  <?php }else{ ?>
+					 <img class="d-block mx-auto mb-4 rounded-circle" src="{{ asset('frontend/img/avatar/avatar-5.png') }}" alt="" width="72" height="72">
+				  <?php } ?>-->
+				  <h2><?php echo $data['user']->name; ?></h2>
+                     <p class="lead">Berikut rincian yang harus anda bayar</p>
                    </div>
                    <div class="section-body">
                     <div class="invoice">
@@ -34,21 +38,21 @@
                           <div class="col-lg-12">
                             <div class="invoice-title">
                               <h2>Invoice</h2>
-                              <div class="invoice-number">Order #12345</div>
+                              <div class="invoice-number">Invoice #<?php echo $data['transaction_details']['order_id']; ?></div>
                             </div>
                             <hr>
                             <div class="row">
                               <div class="col-md-6">
                                 <address>
                                   <strong>Ditagih Ke:</strong><br>
-                                    Umaedi<br>
-                                    Tiuh Tohou Tulang Bawang
+                                    <?php echo $data['user']->name; ?><br>
+                                    <?php echo $data['user']->alamat; ?><br> <?php echo $data['user']->no_telp; ?>
                                 </address>
                               </div>
                               <div class="col-md-6 text-right">
                                 <address>
                                   <strong>Tanggal Order:</strong><br>
-                                  Juli 14, 2022<br><br>
+                                  <?php echo date("d-m-Y", strtotime($data['transaction_details']['date']));; ?><br><br>
                                 </address>
                             </div>
                             </div>
@@ -68,34 +72,11 @@
                                 <tr>
                                   <td>1</td>
                                   <td>Towing mobil</td>
-                                  <td class="text-center">Rp. 50.000</td>
+                                  <td class="text-center">Rp. <?php echo $data['transaction_details']['gross_amount']; ?></td>
                                 </tr>
                               </table>
                             </div>
-                            <div class="row mt-4">
-                              <div class="col-lg-8">
-                                <div class="section-title">Metode pembayaran</div>
-                                <p class="section-lead">Metode pembayaran yang kami berikan adalah untuk memudahkan Anda dalam melakukan pembayaran tagihan.</p>
-                                <div class="d-flex">
-                                  <div class="mr-2 bg-visa" data-width="61" data-height="38"></div>
-                                  <div class="mr-2 bg-jcb" data-width="61" data-height="38"></div>
-                                  <div class="mr-2 bg-mastercard" data-width="61" data-height="38"></div>
-                                  <div class="bg-paypal" data-width="61" data-height="38"></div>
-                                </div>
-                              </div>
-                              <div class="col-lg-4 text-right">
-                                <div class="invoice-detail-item">
-                                  <div class="invoice-detail-name">Subtotal</div>
-                                  <div class="invoice-detail-value">Rp. 50.000</div>
-                                </div>
-                                <hr class="mt-2 mb-2">
-                                <div class="invoice-detail-item">
-                                  <div class="invoice-detail-name">Total</div>
-                                  <div class="invoice-detail-value invoice-detail-value-lg">Rp. 50.000</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                             </div>
                         </div>
                       </div>
                       <hr>

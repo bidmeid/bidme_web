@@ -22,7 +22,10 @@
                      <div class="col-md-12 order-md-1">
                        <h4 class="mb-3">Informasi Kontak Akun</h4>
 					   <div class="alert alert-warning" role="alert" id="alert"></div>
-                       <form class="contact__form fw-bolder" id="account">          
+					   <?php if($data['user']->avatar){ ?>
+					   <img class="d-block mx-auto mb-4 rounded-circle" src="<?php echo $data['user']->avatar; ?>" alt="" width="72" height="72">
+                       <?php } ?>
+					   <form class="contact__form fw-bolder" id="account">          
                          <div class="mb-3">
                            <label for=" email">Nama</label>
                            <input type="text" name="name" class="form-control" value="<?php echo $data['user']->name; ?>">
@@ -41,7 +44,7 @@
 
                          <div class="mb-3">
                            <label for="email">No Telpon</label>
-                           <input type="number" name="no_telp" class="form-control col-5" placeholder="08xxxxxxxxx" value="<?php echo $data['user']->no_telp; ?>" >
+                           <input type="number" name="no_telp" class="form-control col-5" placeholder="08xxxxxxxxx" value="<?php echo $data['user']->no_telp; ?>" required>
                            <div class="invalid-feedback">
                              Please enter a valid email address for shipping updates.
                            </div>
@@ -95,7 +98,7 @@ window.onload = function() {
 $("#account").submit(function(event) {
 		event.preventDefault();
 		 
-		var path = ServerUrl+"/api/update_account";
+		var path = ServerUrl+"/api/updateAccount";
 		swal("Apakah anda yakin ?", {
                     buttons: {
                         cancel: "Batalkan l!!",
@@ -121,10 +124,8 @@ $("#account").submit(function(event) {
 												title: 'Saved!',
 												text: response.responseJSON.message,
 												icon:'success',
-												onClose: function () {
-												window.location.reload();
-												}
 											}); 
+											window.location.reload();
 									}else{
 										swal({
 												title: 'Aborted!',
@@ -134,7 +135,8 @@ $("#account").submit(function(event) {
 												$(":submit").prop("disabled", false);
 												window.location.reload();									
 												}
-											});	 
+											});
+											window.location.reload();											
 									}
 									},
 									dataType:'json'

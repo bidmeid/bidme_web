@@ -69,18 +69,13 @@
                         : <label for="type_order" class="col-sm-3 col-form-label">{{ request('orderType') }}</label>
                       </div>
                     </div>
-                    <div class="form-group row mt-3">
-                      <label for="harga-dasar" class="col-sm-3 col-form-label">{{ __('Harga Dasar') }}</label>
-                      <div class="col-sm-9">
-                        : <label id="harga_dasar" for="total_bayar" class="col-sm-3 col-form-label"></label>
-                      </div>
-                    </div>
+                   
                     <hr>
                      
                     <div class="form-group row mt-3 fw-bolder">
-                        <label for="total-bayar" class="col-sm-3 col-form-label">{{ __('Total Biaya') }}</label>
+                        <label for="total-bayar" class="col-sm-3 col-form-label">{{ __('Harga Dasar') }}</label>
                         <div class="col-sm-9">
-						  : <label id="total_bayar" for="total_bayar" class="col-sm-3 col-form-label"></label>
+						  : <label id="total_bayar" for="total_bayar" class="col-sm-6 col-form-label"></label>
                            
                         </div>
                     </div>
@@ -159,8 +154,11 @@ function getHargaDasar(){
      if(response.status == 200) {
        let data = response.responseJSON.data.RequestCost;
        $('#harga_dasar').html('Rp. '+data.totalHarga);
-        
+       
        $('#total_bayar').html('Rp. '+data.totalHarga);
+	   if(data.totalHarga == 0){
+		   $('#total_bayar').html('Harga Belum Tersedia');
+	   }
        $('input[name=ruteId]').val(data.id);
        $('input[name=orderCost]').val(data.totalHarga);
      }
