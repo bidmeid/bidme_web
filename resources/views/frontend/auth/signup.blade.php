@@ -89,7 +89,7 @@
       const data = new FormData(form);
 
      $.ajax({
-        url:  'http://localhost/servicesBidme/api/auth/signup',
+        url:  ServerUrl+'/api/auth/signup',
         data: data,
         method: 'POST',
         processData: false,

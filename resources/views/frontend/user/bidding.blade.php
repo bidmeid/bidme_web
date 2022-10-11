@@ -5,7 +5,7 @@
    @component('components.frontend.breadcrumb')
    @slot('breadcrumb')
    <div class="page__title-wrapper text-center">
-    <p>{{ $data['title'] }}</p>
+     
       
    </div>
    @endslot
@@ -18,7 +18,7 @@
          <div class="row">
             <div class="col-xxl-10 offset-xxl-1 col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
                <div class="contact__wrapper white-bg mt--70 p-relative z-index-1 wow fadeInUp" data-wow-delay=".3s">
-                  <div class="py-5 text-center">
+                  <div class="py-5 text-center notxxx">
                       
                      <p class="lead">Anda bisa memilih towing yang tersedia dibawah ini</p>
                    </div>
@@ -28,6 +28,9 @@
                   
                      
                    </div>
+				   <div class="py-5 text-center">
+				   <span class="loader"></span>
+				   </div>
                </div>
             </div>
          </div>
@@ -39,7 +42,9 @@
 @push('js')
 <script>
 
-
+	var image = "{{ asset('assets/frontend/images/preloaders/1.gif') }}";
+	var $loading = $(".loader").html( '<img class="loading-image" src="'+image+'" alt="loading..">');
+	
 	var orderId = getUrlVars().orderId;
 	 
 	function loadBidding(){
@@ -71,13 +76,16 @@
 								  
 							
 							});
-							 
+							$('.notxxx').show();
+							setTimeout('$loading.hide()',1000); 
 							$('#item-list').html(content);
                         }else if(response.status == 401){
 							 e('info','401 server conection error');
 						}else if(response.status == 202){
 							 $('#loadmore').remove();
+							 $('.notxxx').hide();
 							 $('#item-list').html('<center class="m-t-50"><h2>kami sedang mencoba mencarikan unit towing terdekat untuk anda</h2></center>');
+							$loading.show();
 						}
                     },
 					dataType:'json'

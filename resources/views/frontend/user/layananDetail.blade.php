@@ -13,28 +13,45 @@
           </div>
        </div>
        <div class="row">
-          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-             <div class="services__item-4 white-bg mb-10">
+          <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay=".3s">
+             <div class="services__item-4 white-bg mb-30">
                 <div id="map"></div>
              </div>
           </div>
-          <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-             <div class="services__item-4 white-bg mb-30">
+          <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay=".5s">
+             <div class="services__item-4 white-bg mb-20">
                 <form id="formOrder">
 
-					<div class="form-group row text-right">
-                        <p class="col-sm-9 col-form-label">Ticket Order:</p>
-                        <h2 id="ticket" class="col-sm-3 col-form-label">#XXXXXXX</h2>
-                         <hr>
+					<div class="form-group row"><h4>Informasi Pesanan</h4> <hr>
+					<span class="text-right">
+                        <p class="col-form-label">Ticket Order:</p>
+                        <h2 id="ticket" class="col-form-label">#XXXXXXX</h2>
+						</span>
+                        
                     </div>
 					
                     <div class="form-group row">
+                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Tanggal Order') }}</label>
+                        <div class="col-sm-9">
+						  <label id="orderDate" class=" col-form-label">: </label>
+                         
+                        </div>
+                    </div>
+					<div class="form-group row mt-3">
+                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Nomor Telpon') }}</label>
+                        <div class="col-sm-9">
+						  <label id="telp" class=" col-form-label">: </label>
+                         
+                        </div>
+                    </div>
+					<div class="form-group row mt-3">
                         <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Lokasi Jemput') }}</label>
                         <div class="col-sm-9">
 						  <label id="alamatAsal" class=" col-form-label">: </label>
                          
                         </div>
                     </div>
+					
                     <div class="form-group row mt-3">
                         <label for="alamatTujuan" class="col-sm-3 col-form-label">{{ __('Lokasi Antar') }}</label>
                         <div class="col-sm-9">
@@ -45,6 +62,12 @@
                       <label for="jarak" class="col-sm-3 col-form-label">{{ __('Unit') }}</label>
                       <div class="col-sm-9">
 						<label id="unit" for="jarak" class="col-sm-3 col-form-label">: </label>
+                      </div>
+                    </div>
+					<div class="form-group row mt-3">
+                      <label for="jarak" class="col-sm-3 col-form-label">{{ __('Kondisi Kendaraan') }}</label>
+                      <div class="col-sm-9">
+						<label id="kondisi" for="jarak" class="col-form-label">: </label>
                       </div>
                     </div>
                     <div class="form-group row mt-3">
@@ -77,6 +100,44 @@
                   </form>
              </div>
           </div>
+		  
+		  <div id="mitra" class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay=".5s">
+             <div class="services__item-4 white-bg mb-10">
+                <form id="formOrder">
+
+					<div class="form-group row"><h4>Informasi Mitra Towing</h4> <hr>
+					 
+                    </div>
+					
+                    <div class="form-group row">
+                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Mitra Towing') }}</label>
+                        <div class="col-sm-9">
+						  <label id="namaUsaha" class=" col-form-label">: </label>
+                         
+                        </div>
+                    </div>
+					<div class="form-group row mt-3">
+                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Alamat Towing') }}</label>
+                        <div class="col-sm-9">
+						  <label id="alamatUsaha" class=" col-form-label">: </label>
+                         
+                        </div>
+                    </div>
+					<div class="form-group row mt-3">
+                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Kontak Telp.') }}</label>
+                        <div class="col-sm-9">
+						  <label id="no_telp" class=" col-form-label">: </label>
+                         
+                        </div>
+                    </div>
+					
+                  </form>
+             </div>
+          </div>
+		  
+		  <div class="col-sm-12" id="btnex2">
+                             
+          </div>
        </div>
     </div>
 
@@ -97,25 +158,40 @@ function loadView(){
 					method: 'GET',
 					complete: function(response){ 				
 					if(response.status == 200){
-							 
+							 if(response.responseJSON.data.status =='paid'){ response.responseJSON.data.status='Telah dibayar';};
 							$('#ticket').html('#'+response.responseJSON.data.ticket);
+							$('#orderDate').append(response.responseJSON.data.orderDate+' '+response.responseJSON.data.orderTime);
+							$('#telp').append(response.responseJSON.data.telp);
 							$('#alamatAsal').append(response.responseJSON.data.alamatAsal);
 							$('#alamatTujuan').append(response.responseJSON.data.alamatTujuan);
 							$('#type_order').append(response.responseJSON.data.orderType);
 							$('#unit').append(response.responseJSON.data.jenisKendaraan.jenisKendaraan+' '+response.responseJSON.data.typeKendaraan.typeKendaraan);
+							$('#kondisi').append(response.responseJSON.data.kondisiKendaraan.kondisiKendaraan);
 							$('#status').append(response.responseJSON.data.status);
 							$('#cost').append('Rp.'+response.responseJSON.data.orderCost);
 							$('#subTitle').html(response.responseJSON.data.regionAsal.distric+' - '+response.responseJSON.data.regionTujuan.distric);
-							 
+							 if(response.responseJSON.data.mitra != null){
+								 $('#namaUsaha').append(response.responseJSON.data.mitra.namaUsaha);
+								 $('#alamatUsaha').append(response.responseJSON.data.mitra.alamatUsaha);
+								 $('#no_telp').append(response.responseJSON.data.mitra.no_telp);
+								  
+							 }else{
+								 $('#mitra').remove();
+							 }
 							var tbody	= '';
 							if(response.responseJSON.data.status == 'unpaid'){
-							tbody +='<hr><a href="<?php echo url('/'); ?>/user/cancelOrder?orderId='+response.responseJSON.data.id+'" type="button" id="cancelOrder" class="btn btn-sm text-primary mt-3 mr-10">Batalkan Pesanan ?</a>';
-                            if(response.responseJSON.data.bidId != null){
-							tbody +='<a href="<?php echo url('/'); ?>/user/checkout?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Pembayaran') }}</a>';
+							//tbody +='<hr><a href="<?php echo url('/'); ?>/user/cancelOrder?orderId='+response.responseJSON.data.id+'" type="button" id="cancelOrder" class="btn btn-sm text-primary mt-3 mr-10">Batalkan Pesanan ?</a>';
+                            tbody +='<a href="<?php echo url('/'); ?>/user/bidding?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Lihat Penawaran Mitra') }}</a>';
+							if(response.responseJSON.data.bidId != null){
+							//tbody +='<a href="<?php echo url('/'); ?>/user/checkout?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Pembayaran') }}</a>';
+							}else{
+							tbody +='<a href="<?php echo url('/'); ?>/user/bidding?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Lihat Penawaran Mitra') }}</a>';
 							}
 							$('#btnex').html(tbody);
+							}else{
+							tbody +='<a href="<?php echo url('/'); ?>/user/tracking?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-lg w-btn-purple col-sm-12 mt-3">{{ __('Tracking Pengiriman') }}</a>';
+							$('#btnex2').html(tbody);
 							}
-							
 							findRoute(response.responseJSON.data.latLongAsal, response.responseJSON.data.latLongTujuan)
 						}else if(response.status == 202){
 							

@@ -15,7 +15,7 @@
                       <nav id="mobile-menu">
                          <ul>
                             <li><a href="{{ url('/') }}">Beranda</a></li>
-                            <li><a href="{{ route('mitra') }}">Gabung Jadi Mitra</a></li>
+                            <li><a href="http://mitra.bidme.id">Gabung Jadi Mitra</a></li>
                             <li><a href="{{ route('posts') }}">Blog/Posts</a></li>
                             <li><a href="{{ route('contact') }}">Bantuan</a></li>
                             <li><a href="{{ route('order') }}">Order</a></li>

@@ -42,6 +42,17 @@ class LayananController extends Controller
         $data = array_merge($this->currentUser(), $data);
 
         return view('frontend.user.layananDetail', compact('data'));
+    } 
+	
+	public function tracking()
+    {
+		
+ 
+
+        $data['title']   = 'Tracking Layanan';
+        $data = array_merge($this->currentUser(), $data);
+
+        return view('frontend.user.tracking', compact('data'));
     }
 	
 	

@@ -14,13 +14,7 @@
           <div class="row">
              <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
                 <div class="sign__wrapper white-bg">
-                  <div class="sign__header mb-35">
-                      
-                     <div class="sign__in text-center">
-                        <a id="sign_social_google" href="javascript:void(0);" class="sign__social text-start mb-15"><i class="fab fa-google"></i>Daftar dengan Google</a>
-                        <p> <span>........</span> {{ __('Atau, daftar dengan email') }}<span> ........</span> </p>
-                     </div>
-                  </div>
+                  
                    <div class="sign__form">
                      <form id="formLogin">
                         @csrf
@@ -45,11 +39,21 @@
                             </div>
                          </div>
                          <button class="w-btn w-btn-11 w-100 mt-3"> <span></span> {{ __('Masuk') }}</button>
-                         <div class="sign__new text-center mt-20">
-                            <p>{{ __('Baru tau Bidme ?') }} <a href="{{ route('signup') }}">{{ __('Daftar') }}</a></p>
-                         </div>
+                         
                       </form>
                    </div>
+				    
+				   <div class="sign__header mt-35">
+                      
+                     <div class="sign__in text-center">
+					 <p>atau</p><br><br>
+                        <a id="sign_social_google" href="javascript:void(0);" class="sign__social text-start mb-15"><i class="fab fa-google"></i>Login Melalui Google</a>
+                         
+                     </div>
+					 <div class="sign__new text-center mt-20">
+                            <p>{{ __('Baru tau Bidme ?') }} <a href="{{ route('signup') }}">{{ __('Daftar Sekarang') }}</a></p>
+                         </div>
+                  </div>
                 </div>
              </div>
           </div>
@@ -77,8 +81,12 @@
              cache: false,
              complete: (response) => {
                 if(response.status == 200) {
-                   console.log(response.responseJSON.access_token);
-                  
+                   
+				   document.cookie = "access_tokenku = "+response.data.access_token;
+				   setTimeout(function() {
+					window.location.replace('/order');
+					}, 200); 
+				   
                 }
              }
           });

@@ -15,6 +15,7 @@ Route::middleware('isUser')->group(function () {
         Route::get('/layanan', [\App\Http\Controllers\User\LayananController::class, 'index']);
         Route::get('/my_order', [\App\Http\Controllers\User\LayananController::class, 'myOrder']);
 		Route::get('/layanan/detail', [\App\Http\Controllers\User\LayananController::class, 'detail']);
+		Route::get('/tracking', [\App\Http\Controllers\User\LayananController::class, 'tracking']);
     });
 });
 

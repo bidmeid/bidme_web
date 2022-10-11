@@ -51,17 +51,17 @@
                          </div>
 						 <div class="mb-3">
                            <label for="email">Kabupaten/Kota</label>
-                           <input type="text" name="region" class="form-control" placeholder="Kabupaten/Kota">
+                           <input type="text" name="region" class="form-control" placeholder="Kabupaten/Kota" value="<?php echo $data['user']->region; ?>">
                            <div class="invalid-feedback">
-                             Please enter a valid email address for shipping updates.
+                             
                            </div>
                          </div>
              
                          <div class="mb-3">
                            <label for="address">Address</label>
-                           <input type="text" class="form-control" id="address" placeholder="Alamat Lengkap" value="<?php echo $data['user']->alamat; ?>" >
+                           <input type="text" class="form-control" name="alamat" id="address" placeholder="Alamat Lengkap" value="<?php echo $data['user']->alamat; ?>" >
                            <div class="invalid-feedback">
-                             Please enter your shipping address.
+                              
                            </div>
                          </div>
 						 <br>

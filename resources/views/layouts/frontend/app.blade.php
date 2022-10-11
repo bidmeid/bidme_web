@@ -35,7 +35,7 @@
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
          </svg>
       </div>
-	  <?php if(isset($_COOKIE['access_tokenku'])){  ?>
+	  <?php if(isset($data['user']->name)){  ?>
 	  @include('layouts.frontend.partials.headerUser')
 	  <?php }else{ ?>
       @include('layouts.frontend.partials.header')

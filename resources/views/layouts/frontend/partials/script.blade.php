@@ -11,4 +11,19 @@
       <script src="{{ asset('frontend') }}/js/wow.min.js"></script>
       <script src="{{ asset('frontend') }}/js/imagesloaded.pkgd.min.js"></script>
       <script src="{{ asset('frontend') }}/js/main.js"></script>
+	  <script>
+    $('#logout').click(() => {
+        $.ajax({
+            url: 'https://services.bidme.id/api/auth/logout',
+            method: 'POST',
+            complete: (response) => {
+                if(response.status == 200) {
+					//document.cookie = "access_tokenku = null";
+					document.cookie = "access_tokenku= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+                    window.location.replace('{{ url("/") }}');
+                }
+            }
+        });
+    });
+</script>
 @stack('js')

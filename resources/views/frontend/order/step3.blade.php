@@ -45,26 +45,26 @@
                 <input name="orderTime" type="hidden" value="{{ request('orderTime') }}">
 
                     <div class="form-group row">
-                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Lokasi Jemput') }}</label>
+                        <label for="alamatAsal" class="col-sm-3 col-form-label fw-bolder">{{ __('Lokasi Jemput') }}</label>
                         <div class="col-sm-9">
 						  <label for="alamatAsal" class=" col-form-label">: {{ request('alamatAsal') }}</label>
                          
                         </div>
                     </div>
                     <div class="form-group row mt-3">
-                        <label for="alamatTujuan" class="col-sm-3 col-form-label">{{ __('Lokasi Antar') }}</label>
+                        <label for="alamatTujuan" class="col-sm-3 col-form-label fw-bolder">{{ __('Lokasi Antar') }}</label>
                         <div class="col-sm-9">
                           <label for="alamatTujuan" class=" col-form-label">: {{ request('alamatTujuan') }}</label>
 						</div>
                     </div>
                     <div class="form-group row mt-3">
-                      <label for="jarak" class="col-sm-3 col-form-label">{{ __('Perkiraan Jarak') }}</label>
+                      <label for="jarak" class="col-sm-3 col-form-label fw-bolder">{{ __('Perkiraan Jarak') }}</label>
                       <div class="col-sm-9">
 						: <label id="jarak" for="jarak" class="col-sm-3 col-form-label"></label>
                       </div>
                     </div>
                     <div class="form-group row mt-3">
-                      <label for="Tipe Order" class="col-sm-3 col-form-label">{{ __('Tipe Order') }}</label>
+                      <label for="Tipe Order" class="col-sm-3 col-form-label fw-bolder">{{ __('Tipe Order') }}</label>
                       <div class="col-sm-9">
                         : <label for="type_order" class="col-sm-3 col-form-label">{{ request('orderType') }}</label>
                       </div>
@@ -78,13 +78,17 @@
 						  : <label id="total_bayar" for="total_bayar" class="col-sm-6 col-form-label"></label>
                            
                         </div>
+						 
                     </div>
+					<div class="alert alert-warning small mt-20" role="alert">
+					  Harga yang tertera diatas adalah standar harga wajar untuk penggunaan jasa towing, standar harga wajar tersebut dapat berubah sewaktu-waktu!
+					</div>
                     <div class="form-group row mt-3">
-                        <div class="col-sm-3">
-                            <a href="{{ route('order') }}" id="btnOrder" class="w-btn w-btn-purple mt-3">{{ __('Batal') }}</a>
+                        <div class="col-sm-6">
+                            <a href="{{ route('order') }}" id="btnOrder" class="w-btn w-btn-purple mt-3">{{ __('Pesan Ulang') }}</a>
                         </div>
-                        <div class="col-sm-3">
-                            <button type="submit" id="btnrder" class="w-btn w-btn-purple mt-3">{{ __('Konfirmasi') }}</button>
+                        <div class="col-sm-6">
+                            <button type="submit" id="btnrder" class="w-btn w-btn-purple mt-3">Konfirmasi Pesanan</button>
                         </div>
                     </div>
                   </form>
@@ -284,8 +288,7 @@ findRoute();
         complete: (response) => {
           if(response.status == 200) {
               // console.log(response.responseJSON.access_token);
-              $token = response.responseJSON.access_token
-              setcookie("access_tokenku", $token);
+              document.cookie = "access_tokenku = "+response.data.access_token;
 			  location.reload();
           }
         }

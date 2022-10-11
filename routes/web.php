@@ -30,3 +30,8 @@ Route::get('/set_cookie', function () {
     setcookie("access_tokenku", $token);
     return redirect('/user/account');
 });
+
+Route::controller(\App\Http\Controllers\Frontend\NotifikasiController::class)->group(function () {
+    Route::get('/user/notifikasi/pembayaran-gagal', 'pembayaranGagal');
+    Route::get('/user/notifikasi/pembayaran-sukses', 'pembayaranSukses');
+});

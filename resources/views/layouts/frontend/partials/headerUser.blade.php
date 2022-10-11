@@ -32,8 +32,8 @@
 						  </button>
 						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							<li><a class="dropdown-item" href="{{ url('user/account') }}">Profile</a></li>
-							<li><a class="dropdown-item" href="{{ url('user/my_order') }}">Riwayat Pesanan</a></li>
-							<li><a class="dropdown-item" href="{{ url('auth/signout') }}">Logout</a></li>
+							
+							<li><a id="logout" class="dropdown-item" href="javascript:void(0)">Logout</a></li>
 						  </ul>
 						</div>
 					  <?php }else{ ?>
