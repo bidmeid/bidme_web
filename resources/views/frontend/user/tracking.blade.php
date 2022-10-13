@@ -16,9 +16,11 @@
           </div>
        </div>
        <div class="row">
-          <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay=".3s">
+           
+		  <div class="col-xxl-6 col-xl-12 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay=".3s">
              <div class="services__item-4 white-bg mb-30">
-                <div id="map"></div>
+                <div class="mb-4" id="map"></div>
+				<div id="alert"></div>
              </div>
           </div>
           
@@ -52,7 +54,7 @@
                         </div>
                     </div>
 					<div class="form-group row mt-3">
-                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Kontak Telp.') }}</label>
+                        <label for="alamatAsal" class="col-sm-3 col-form-label">{{ __('Kontak Driver') }}</label>
                         <div class="col-sm-9">
 						  <label id="noTlpDriver" class=" col-form-label">: </label>
                          
@@ -88,6 +90,7 @@ function loadView(){
 					if(response.status == 200){
 							 
 							$('#namaUsaha').html(response.responseJSON.data.mitra.namaUsaha);
+							$('#alert').html('<div class="alert alert-secondary" role="alert">'+response.responseJSON.data.msg+', Download aplikasi android untuk informasi detail traking kendaraan.</div>');
 							$('#namaDriver').html(response.responseJSON.data.driver.nameDriver);
 							$('#noTnkbTowing').html(response.responseJSON.data.noTnkbTowing);
 							$('#noTlpDriver').html(response.responseJSON.data.driver.noTlpDriver);
@@ -97,11 +100,12 @@ function loadView(){
 							tbody +='<a onclick="finishOrder(`'+response.responseJSON.data.orderId+'`)" href="javacript:void(0);" id="btnrder" class="btn btn-lg btn-success col-sm-12 mt-3">{{ __('Pesanan Selesai') }}</a>';
 							tbody +='<a href="<?php echo url('/'); ?>/user/layanan/detail??orderId='+response.responseJSON.data.orderId+'" id="btnrder" class="btn btn-lg btn-secondary col-sm-12 mt-3">{{ __('Kembali') }}</a>';
 							$('#btnex2').html(tbody);
-							 
-							
+							if(response.responseJSON.data.latLongDriver == "0.0,0.0"){
+							 //$('#alert').html('<div class="alert alert-secondary" role="alert">'+response.responseJSON.data.msg+', Download aplikasi android untuk informasi detail traking.</div>');
+							}
 							findRoute(response.responseJSON.data.latLongDriver, response.responseJSON.data.latLongTujuan)
 						}else if(response.status == 202){
-							
+							window.location.replace("{{ url('/user/layanan'); }}");
 						}
 					},
 				dataType:'json'
@@ -164,19 +168,20 @@ let directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: tru
 	  )
 	 };
 	 
-
-
-function findRoute(latLongAsal, latLongTujuan) {
-	
-	var mapOptions = {
-    zoom: 8,
+var mapOptions = {
+    zoom: 5,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: new google.maps.LatLng(latLongTujuan)
+    center: new google.maps.LatLng(-2.2496319,109.9386476)
   };
-  map = new google.maps.Map(document.getElementById('map'),
+
+var map = new google.maps.Map(document.getElementById('map'),
       mapOptions);
 	  
 directionsDisplay.setMap(map);
+
+function findRoute(latLongAsal, latLongTujuan) {
+	if(latLongAsal != "0.0,0.0"){
+	
 
    let startAddress = latLongAsal;
    let endAddress = latLongTujuan;
@@ -197,12 +202,13 @@ directionsDisplay.setMap(map);
 		   makeMarker( result.routes[0].legs[0].start_location, icons.start, "Posisi Driver" );
 		   makeMarker( result.routes[0].legs[0].end_location, icons.end, "Alamat Tujuan" );
 		 
-		map.setZoom(8);
+		map.setZoom(15);
 		    
        } else {
            return alert('Petunjuk arah gagal dimuat, masukkan alamat yang benar!');
        }
    });
+   }
 }
 
 function makeMarker( position, icon, title ) {
@@ -216,7 +222,7 @@ function makeMarker( position, icon, title ) {
  
  	setInterval( function () {
 		loadView();
-	}, 10000 );
+	}, 20000 );
 
 </script>
 @endpush

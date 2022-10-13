@@ -181,13 +181,13 @@ function loadView(){
 							var tbody	= '';
 							if(response.responseJSON.data.status == 'unpaid'){
 							//tbody +='<hr><a href="<?php echo url('/'); ?>/user/cancelOrder?orderId='+response.responseJSON.data.id+'" type="button" id="cancelOrder" class="btn btn-sm text-primary mt-3 mr-10">Batalkan Pesanan ?</a>';
-                            tbody +='<a href="<?php echo url('/'); ?>/user/bidding?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Lihat Penawaran Mitra') }}</a>';
+                            tbody +='<a href="<?php echo url('/'); ?>/user/bidding?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-lg w-btn-purple col-sm-12 mt-3">{{ __('Lihat Penawaran Mitra') }}</a>';
 							if(response.responseJSON.data.bidId != null){
 							//tbody +='<a href="<?php echo url('/'); ?>/user/checkout?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Pembayaran') }}</a>';
 							}else{
-							tbody +='<a href="<?php echo url('/'); ?>/user/bidding?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-md w-btn-purple mt-3">{{ __('Lihat Penawaran Mitra') }}</a>';
+							//tbody +='<a href="<?php echo url('/'); ?>/user/bidding?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-lg w-btn-purple col-sm-12 mt-3">{{ __('Lihat Penawaran Mitra') }}</a>';
 							}
-							$('#btnex').html(tbody);
+							$('#btnex2').html(tbody);
 							}else{
 							tbody +='<a href="<?php echo url('/'); ?>/user/tracking?orderId='+response.responseJSON.data.id+'" id="btnrder" class="btn btn-lg w-btn-purple col-sm-12 mt-3">{{ __('Tracking Pengiriman') }}</a>';
 							$('#btnex2').html(tbody);
@@ -219,6 +219,7 @@ map = new google.maps.Map(document.getElementById('map'), {
 directionsDisplay.setMap(map);
 
 function findRoute(latLongAsal, latLongTujuan) {
+	
    let startAddress = latLongAsal;
    let endAddress = latLongTujuan;
    let request = {

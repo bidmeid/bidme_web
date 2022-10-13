@@ -9,6 +9,7 @@ Route::post('payments/midtrans-success', [MidtransController::class, 'success'])
 
 Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/test', 'test')->name('test');
     Route::get('/gabung-mitra', 'mitra')->name('mitra');
     Route::get('/posts', 'posts')->name('posts');
     Route::get('/post/{article:slug}', 'post')->name('post');

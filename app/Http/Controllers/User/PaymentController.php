@@ -86,16 +86,35 @@ class PaymentController extends Controller
         $status = \Midtrans\Transaction::status($response->data->invoice->noInvoice);
         if ($status != false) {
             if ($status->status_code == 407) {
+				try {
+					$response = $client->request(
+						'POST',
+						env('APP_SERVER') . '/api/paymentStatus',
+						[
+							'headers' => $headers,
+							'form_params' => [
+								"orderId" => $request->orderId,
+								"paymentStatus" => 'failed',
+							]
+						]
+					); //request data dari url tersebut ke api/meta@index
+				} catch (\GuzzleHttp\Exception\ClientException $e) {
+
+					dd($e->getResponse());
+				}
                 return redirect('/user/notifikasi/pembayaran-gagal');
             } elseif ($status->status_code == 200) {
 				
 				try {
 					$response = $client->request(
 						'POST',
-						env('APP_SERVER') . '/api/payment_handler',
+						env('APP_SERVER') . '/api/paymentStatus',
 						[
 							'headers' => $headers,
-							'form_params' => $status
+							'form_params' => [
+								"orderId" => $request->orderId,
+								"paymentStatus" => 'settlement',
+							]
 						]
 					); //request data dari url tersebut ke api/meta@index
 				} catch (\GuzzleHttp\Exception\ClientException $e) {

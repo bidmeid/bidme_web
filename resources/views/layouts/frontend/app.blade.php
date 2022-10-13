@@ -43,7 +43,13 @@
       @include('layouts.frontend.partials.sidebar')
       <div class="body-overlay"></div>
          @yield('content')
+	  
+	  <?php if(isset($data['user']->name)){  ?>
+	  @include('layouts.frontend.partials.footerUser')
+	  <?php }else{ ?>
       @include('layouts.frontend.partials.footer')
+	  <?php } ?>
+       
       @include('layouts.frontend.partials.script')
    </body>
 

@@ -86,6 +86,10 @@
 							 $('.notxxx').hide();
 							 $('#item-list').html('<center class="m-t-50"><h2>kami sedang mencoba mencarikan unit towing terdekat untuk anda</h2></center>');
 							$loading.show();
+						}else if(response.status == 203){
+							  $('.notxxx').hide();
+							 $('#item-list').html('<center class="mt-50"><h2>'+response.responseJSON.message+'</h2><br><a href="<?php echo url('/order'); ?>"  class="btn btn-md w-btn-purple mt-3">{{ __('Order Layanan') }}</a></center>');
+							 $loading.hide();
 						}
                     },
 					dataType:'json'

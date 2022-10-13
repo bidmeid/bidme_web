@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\User\BaseController as Controller;
+use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
@@ -70,5 +71,37 @@ class FrontendController extends Controller
     public function faq()
     {
         return view('frontend.pages.faq');
+    }
+	
+	public function test()
+    {
+        $dateOrder = "2022-10-13";
+        $timeOrder = "07:19:59";
+		
+		$orderTime =  Carbon::parse($dateOrder.' '.$timeOrder);
+		$now =  Carbon::now();
+		
+		$orderExpired = Carbon::parse($dateOrder.' '.$timeOrder)->addMinutes(5);
+		
+		$expireMin = $orderExpired->diff($orderTime)->format('%H:%I:%S');
+		
+		$diffInMinutes = $now->diffInMinutes($orderTime);
+		
+		echo $now;
+		echo '<br>';
+		echo $orderTime;
+		echo '<br>';
+		echo $orderExpired;
+		echo '<br>';
+		echo $expireMin;
+		echo '<br>';
+		echo $now->diff($orderTime)->format('%H:%I:%S');
+		echo '<br>';
+		echo $now->diffInMinutes($orderTime);
+	
+		if($diffInMinutes > 5){
+			return false;
+		} 
+		
     }
 }
